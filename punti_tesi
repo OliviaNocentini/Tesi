@@ -1,0 +1,37 @@
+Inizio della tesi 20/04/17
+
+Primi passi:
+-ripasso di ros e integrazione delle parti mancanti di ros con tutorials.
+-imparato utilizzo di gazebo
+-scaricato px4 autopilota del drone e studio dell'autopilota
+-scaricato mavros 
+-integrazione mavros con px4 mediante sitl.
+-installazione di mav_trajectory_generation (repository contains tools for polynomial trajectory generation and optimization)
+-installazione di rpv che serve per disegnare le traiettorie in 3d in ros.
+
+-------------------------------------------------------------------------------------------------------------------------------------------------
+
+-ricerca in letteratura di algoritmi riguardanti la collision avoidance e discussione con simone relativamente alle varie tecniche.
+-slides con caratteristiche dei vari algoritmi
+
+-------------------------------------------------------------------------------------------------------------------------------------------------
+
+-studio della COAV library trovata da me e test relativa alla libreria
+-------------------------------------------------------------------------------------------------------------------------------------------------
+
+-test del file offboard.cpp relativo alla px4 che permette al drone di volare in alto.
+
+-effettuato passaggio per 3 waypoints utilizzando un controllo in posizione.
+
+-effettuato controllo in velocità del drone e verifica di come come si muova il drone  a seconda dei comandi dati.
+
+--------------------------------------------------------------------------------------------------------------------------------------------------
+
+-studio di cosa sia un plugin e di come integrarlo all'interno del modello del drone
+ in px4.
+
+-integrazione della kinect mediante plugin in px4.
+
+-studio del pacchetto ar_track_alvar che serve per identificare i tag (nel nostro caso rappresentante la nostra targa)
+
+---------------------------------------------------------------------------------------------------------------------------------------------------
