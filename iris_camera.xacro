@@ -1,0 +1,18 @@
+<?xml version="1.0"?>
+
+<robot name="iris_camera" xmlns:xacro="http://www.ros.org/wiki/xacro">
+
+	<xacro:property name="PI" value="3.1415926535897931" />
+
+	<!-- Include iris description -->
+	<xacro:include filename="$(arg rotors_description_dir)/urdf/iris_base.xacro"/>
+
+	<!-- Asus Xiton Live Pro -->
+	<xacro:include filename="$(arg camera_description_dir)/urdf/asus_camera.xacro"/>
+    	<xacro:asus_camera name="camera" parent="base_link">
+	  <origin xyz="0.1475 0.0 0.0" rpy="0 0 0"/>
+    	</xacro:asus_camera>
+
+</robot>
+
+
