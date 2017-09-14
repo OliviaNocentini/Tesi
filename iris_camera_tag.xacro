@@ -15,9 +15,9 @@
 
 	<!-- tag -->
 	<xacro:include filename="$(arg tag_description_dir)/urdf/tag.xacro"/>
-    	<xacro:tag name="tag" parent="base_link">
+    	<xacro:artag name="tag" parent="base_link">
 	  <origin xyz="0.7 0.0 0.0" rpy="0 0 0"/>
-    	</xacro:tag>
+    	</xacro:artag>
 
 </robot>
 
