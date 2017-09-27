@@ -417,7 +417,7 @@
         <updateRate>0.0</updateRate>
         <cameraName>iRobot/camera</cameraName>
         <imageTopicName>image_raw</imageTopicName>
-        <cameraInfoTopicName>camera_info</cameraInfoTopicName>
+      <!--  <cameraInfoTopicName>camera_info</cameraInfoTopicName> -->
         <frameName>camera_link</frameName>
         <hackBaseline>0.07</hackBaseline>
         <distortionK1>0.0</distortionK1>
@@ -498,7 +498,7 @@
     </plugin>
   </gazebo>
   <joint name="tag_joint" type="fixed">
-    <origin rpy="0 0 0" xyz="0.0 0.0 0.7"/>
+    <origin rpy="0 1.57079632679 0" xyz="0.0 0.0 0.18"/>
     <parent link="base_link"/>
     <child link="tag_link"/>
   </joint>
@@ -511,13 +511,13 @@
     <visual>
       <origin rpy="0 -1.57079632679 0" xyz="0 0 0"/>
       <geometry>
-        <mesh filename="package://vigir_ar_alvar_description/meshes/tag.dae"/>
+        <mesh filename="/home/oli/tesi_software/Firmare/Tools/sitl_gazebo/models/tag/meshes/artag_01.dae"/>
       </geometry>
     </visual>
     <collision>
       <origin rpy="0 0 0" xyz="0 0 0"/>
       <geometry>
-        <mesh filename="package://vigir_ar_alvar_description/meshes/tag.dae"/>
+        <mesh filename="/home/oli/tesi_software/Firmare/Tools/sitl_gazebo/models/tag/meshes/artag_01.dae"/>
       </geometry>
     </collision>
   </link>
@@ -546,9 +546,9 @@
     </collision>
   </link>
   <gazebo reference="tag_link">
-    <!--      
+      <!--       
       <material>artag/${name}</material>
-      <turnGravityOff>false</turnGravityOff>
+     <turnGravityOff>false</turnGravityOff>
       <static>false</static>
       -->
   </gazebo>
