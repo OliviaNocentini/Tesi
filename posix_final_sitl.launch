@@ -1,0 +1,82 @@
+<launch>
+
+    <!-- Posix SITL environment launch script -->
+    <arg name="x" default="0"/>
+    <arg name="y" default="0"/>
+    <arg name="z" default="0"/>
+    <arg name="R" default="0"/>
+    <arg name="P" default="0"/>
+    <arg name="Y" default="0"/>
+    <arg name="x1" default="0.7"/>
+    <arg name="y1" default="0"/>
+    <arg name="z1" default="0"/>
+    <arg name="R1" default="0"/>
+    <arg name="P1" default="0"/>
+    <arg name="Y1" default="0"/>
+    <arg name="est" default="lpe"/>
+    <arg name="vehicle_1" default="iris"/>
+    <arg name="vehicle_2" default="iRobot"/>
+    <arg name="init_pose"/>
+    <arg name="world" default="$(find mavlink_sitl_gazebo)/worlds/empty.world"/>
+    <arg name="iris_urdf" default="$(find mavlink_sitl_gazebo)/models/rotors_description/urdf/iris_camera.urdf"/>
+    <arg name="iRobot_urdf" default="$(find mavlink_sitl_gazebo)/models/rotors_description/urdf/iRobot_tag.urdf"/>
+    <arg name="rcS" default="$(find px4)/posix-configs/SITL/init/$(arg est)/$(arg vehicle_1)"/>
+
+    <arg name="headless" default="false"/>
+    <arg name="gui" default="true"/>
+    <arg name="ns" default="/"/>
+
+    <arg name="debug" default="false"/>
+    <arg name="verbose" default="false"/>
+    <arg name="paused" default="false"/>
+
+    <node name="sitl" pkg="px4" type="px4" output="screen"
+        args="$(find px4) $(arg rcS)">
+    </node>
+
+    <include file="$(find gazebo_ros)/launch/empty_world.launch">
+        <arg name="headless" value="$(arg headless)"/>
+        <arg name="gui" value="$(arg gui)"/>
+        <arg name="world_name" value="$(arg world)" />
+        <arg name="debug" value="$(arg debug)" />
+        <arg name="verbose" value="$(arg verbose)" />
+        <arg name="paused" value="$(arg paused)" />
+    </include>
+
+    <param name ="robot_description" textfile = "$(arg iris_urdf)"/>
+
+    <node name="$(anon vehicle_1_spawn)" output="screen" pkg="gazebo_ros" type="spawn_model"
+        args="-urdf -file $(arg iris_urdf) -model $(arg vehicle_1) -x $(arg x) -y $(arg y) -z $(arg z) -R $(arg R) -P $(arg P) -Y $(arg Y)"/>
+    
+   <!-- <param name="tf_prefix" type="string" value="$(arg vehicle_1)"/> -->
+    <node name="robot_state_publisher_1" pkg="robot_state_publisher" type="robot_state_publisher" />
+    <node name="joint_state_publisher_1" pkg="joint_state_publisher" type="joint_state_publisher" />
+
+  <param name ="robot_description_2" textfile = "$(arg iRobot_urdf)"/>
+
+    <node name="$(anon vehicle_2_spawn)" output="screen" pkg="gazebo_ros" type="spawn_model"
+        args="-urdf -file $(arg iRobot_urdf) -model $(arg vehicle_2) -x $(arg x1) -y $(arg y1) -z $(arg z1) -R $(arg R1) -P $(arg P1) -Y $(arg Y1)"/>
+
+  <!--  <param name="tf_prefix" type="string" value="$(arg model_name)" /> -->
+    <param name="tf_prefix" type="string" value="$(arg vehicle_2)" />
+    <node name="robot_state_publisher_2" pkg="robot_state_publisher" type="robot_state_publisher" />
+    <node name="joint_state_publisher_2" pkg="joint_state_publisher" type="joint_state_publisher" /> 
+
+
+    
+
+  <!--  <group ns="$(arg vehicle_2)">
+        <param name="tf_prefix" value="$(arg vehicle_2)" />
+    	<param name="robot_description_2" command="$(find xacro)/xacro.py '$(find tesi_software)/Firmware/Tools/sitl_gazebo/models/ rotors_description/urdf/iRobot.xacro'" />
+        <node name="$(anon vehicle_2_spawn)" pkg="gazebo_ros" type="spawn_model" output="screen" args="$(arg init_pose) -urdf -param robot_description_2 -model $(arg vehicle_2)" respawn="false"/>
+    </group> -->
+
+
+
+</launch>
+
+
+
+
+
+<!-- vim: set et ft=xml fenc=utf-8 ff=unix sts=0 sw=4 ts=4 : -->
