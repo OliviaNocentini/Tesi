@@ -10,7 +10,7 @@
 	<!-- Asus Xiton Live Pro -->
 	<xacro:include filename="$(arg camera_description_dir)/urdf/asus_camera.xacro"/>
     	<xacro:asus_camera name="camera" parent="base_link">
-	  <origin xyz="0.1475 0.0 0.0" rpy="0 0 0"/>
+	  <origin xyz="0.1475 0.0 0.0" rpy="0 0.29 0"/>
     	</xacro:asus_camera>
 
 </robot>
